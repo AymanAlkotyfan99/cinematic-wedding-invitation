@@ -8,7 +8,7 @@ window.WEDDING = {
   date: '2026-10-01',
   startTime: '16:00',
   utcOffset: '+03:00',
-  whatsapp: '963949330851',
+  whatsapp: '963981217167',
   venues: [{
     name: 'صالة الفواز',
     address: 'نلتقي لنحتفل معًا',
