@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" fill="none">
+  <title>Champagne gold engraved envelope filigree</title>
+  <defs>
+    <filter id="fold-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+    <!-- An open corner ornament: fine stems, paired leaves and a small scroll. -->
+    <g id="corner" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 60C4 37 16 20 46 11C67 5 90 4 121 5M9 50C18 32 31 26 55 25C71 24 82 17 89 8"/>
+      <path d="M26 21C17 21 12 14 13 9C24 10 29 14 26 21ZM40 14C33 10 33 3 38 0C47 4 48 8 40 14ZM60 8C57 1 60-4 66-5C71 1 69 5 60 8ZM77 6C84 0 94 0 98 4C91 9 84 10 77 6ZM102 5C108-1 120-1 126 3C118 8 109 9 102 5ZM12 40C3 39-1 33 0 28C10 29 16 33 12 40ZM22 29C24 19 31 16 35 19C33 26 28 30 22 29ZM44 25C45 33 51 36 58 33C57 26 53 23 44 25ZM63 24C66 17 72 16 77 19C74 26 69 27 63 24Z"/>
+      <path d="M5 61C5 77 15 82 23 74C29 69 27 59 19 60C15 60 14 65 17 67M99 7C121 7 134 10 146 20M136 15C136 9 141 7 145 9C150 13 146 19 141 18"/>
+      <circle cx="5" cy="89" r="1.5"/><circle cx="7" cy="97" r=".9"/>
+      <circle cx="155" cy="23" r="1.5"/><circle cx="164" cy="27" r=".9"/>
+    </g>
+    <!-- A small eight-petal rosette, flattened for the portrait paper ratio. -->
+    <g id="rosette" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0-7C-9-13-9-25 0-31C9-25 9-13 0-7ZM5-5C5-16 14-25 23-23C25-14 16-5 5-5ZM7 0C13-9 25-9 31 0C25 9 13 9 7 0ZM5 5C16 5 25 14 23 23C14 25 5 16 5 5ZM0 7C9 13 9 25 0 31C-9 25-9 13 0 7ZM-5 5C-5 16-14 25-23 23C-25 14-16 5-5 5ZM-7 0C-13 9-25 9-31 0C-25-9-13-9-7 0ZM-5-5C-16-5-25-14-23-23C-14-25-5-16-5-5Z"/>
+      <circle r="7"/><circle r="3"/>
+      <path d="M-39 0H-48M39 0H48M0-39V-44M0 39V44"/>
+      <circle cx="-54" r="1.5"/><circle cx="54" r="1.5"/>
+    </g>
+    <g id="seams" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Double seams follow each fold; they stop before the wax seal. -->
+      <path d="M34 18H429M571 18H966M34 18L389 347M966 18L608 347"/>
+      <path d="M54 27H421M579 27H946M54 27L378 326M946 27L620 326" stroke-width=".7"/>
+      <path d="M18 79V327M18 593V849M982 79V327M982 593V849"/>
+      <path d="M27 101V317M27 606V827M973 101V317M973 606V827" stroke-width=".65"/>
+      <path d="M31 878L382 570M969 878L613 570M43 890L394 582M957 890L601 582"/>
+      <path d="M33 963H263M737 963H967M57 973H230M770 973H943" stroke-width=".75"/>
+      <path d="M45 44L363 338M955 44L633 338M35 855L361 570M965 855L633 570" stroke-width="1.55" stroke-dasharray=".1 13"/>
+    </g>
+    <g id="ornaments" stroke-linecap="round" stroke-linejoin="round">
+      <use href="#corner" transform="translate(32 35) scale(.86 .74)"/>
+      <use href="#corner" transform="translate(968 35) scale(-.86 .74)"/>
+      <use href="#corner" transform="translate(35 945) scale(.8 -.67)"/>
+      <use href="#corner" transform="translate(965 945) scale(-.8 -.67)"/>
+      <use href="#rosette" transform="translate(500 31) scale(.73 .42)"/>
+      <use href="#rosette" transform="translate(500 623) scale(.7 .42)"/>
+      <use href="#rosette" transform="translate(500 970) scale(.53 .32)"/>
+      <!-- Short scrolls fill the bare paper around the lower small medallion. -->
+      <path d="M448 623C428 623 421 615 405 615C392 615 385 621 389 626C393 631 403 629 402 624M552 623C572 623 579 615 595 615C608 615 615 621 611 626C607 631 597 629 598 624"/>
+      <path d="M431 621C426 611 415 607 405 610C413 617 421 621 431 621ZM569 621C574 611 585 607 595 610C587 617 579 621 569 621ZM419 620C411 624 403 624 397 621M581 620C589 624 597 624 603 621"/>
+      <circle cx="374" cy="621" r="1.5"/><circle cx="626" cy="621" r="1.5"/>
+      <!-- Tiny pearl drops accent the interrupted side rules. -->
+      <path d="M18 349C11 344 11 336 18 331C25 336 25 344 18 349ZM982 349C975 344 975 336 982 331C989 336 989 344 982 349ZM18 570C11 565 11 557 18 552C25 557 25 565 18 570ZM982 570C975 565 975 557 982 552C989 557 989 565 982 570Z"/>
+      <circle cx="18" cy="358" r="1.3"/><circle cx="982" cy="358" r="1.3"/>
+      <circle cx="18" cy="580" r="1.3"/><circle cx="982" cy="580" r="1.3"/>
+      <path d="M326 962C355 962 374 970 406 970H455M674 962C645 962 626 970 594 970H545"/>
+      <path d="M352 964C346 958 337 956 330 958C336 964 344 966 352 964ZM648 964C654 958 663 956 670 958C664 964 656 966 648 964"/>
+      <circle cx="313" cy="962" r="1.2"/><circle cx="687" cy="962" r="1.2"/>
+    </g>
+    <g id="engraving" stroke-width="1.1">
+      <use href="#seams"/><use href="#ornaments"/>
+    </g>
+  </defs>
+  <path d="M0 2L496.63 461.54L1000 2M0 897.7L496.63 461.54L1000 897.7" stroke="#95653e" stroke-width="4.5" stroke-opacity=".2" filter="url(#fold-shadow)"/>
+  <path d="M0 0L496.63 459.54L1000 0M0 895.7L496.63 459.54L1000 895.7" stroke="#fff0d7" stroke-width="1.1" stroke-opacity=".85"/>
+  <!-- Offset ivory catches the light along the fine champagne indentation. -->
+  <use href="#engraving" stroke="#fff4d7" stroke-opacity=".8" transform="translate(-.75 -.6)"/>
+  <use href="#engraving" stroke="#b89762" stroke-opacity=".62"/>
+</svg>

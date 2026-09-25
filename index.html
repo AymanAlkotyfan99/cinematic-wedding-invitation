@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f1e7d9">
+  <meta name="description" content="لمسة تفتح الظرف على ضوءٍ دافئ وموسيقى هادئة… ودعوة من القلب.">
+  <title>ظرف الدعوة</title>
+  <link rel="preload" as="image" href="assets/envelope-unsealed.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="wedding-config.js" defer></script>
+  <script src="wedding-audio.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="stage" id="envelopeStage" aria-label="فتح ظرف الدعوة">
+    <div class="backdrop" aria-hidden="true">
+      <span class="backdrop__silk backdrop__silk--left"></span>
+      <span class="backdrop__silk backdrop__silk--right"></span>
+      <svg class="backdrop__branch" viewBox="0 0 300 650" fill="currentColor">
+        <path d="M45 650C56 425 141 243 237 28" fill="none" stroke="currentColor" stroke-width="5"/>
+        <path d="M65 540C4 514 5 461 7 440C48 451 69 494 65 540ZM81 474C129 479 158 449 168 416C119 414 91 437 81 474ZM104 406C50 384 43 343 47 316C90 331 113 366 104 406ZM132 334C178 341 216 310 222 279C175 276 146 300 132 334ZM161 262C116 237 109 197 117 173C154 188 173 226 161 262ZM190 188C228 193 262 171 270 136C232 130 199 153 190 188ZM220 113C188 85 187 53 197 32C226 53 232 82 220 113Z"/>
+      </svg>
+    </div>
+    <div class="sunlight" aria-hidden="true"><div class="sunlight__rays"></div></div>
+    <div class="envelope-wrap" id="envelopeWrap">
+      <figure class="envelope" id="envelope" data-state="closed" data-invitation-url="invitation.html" aria-label="ظرف خوخي مزخرف بالورود وختم ذهبي">
+        <div class="envelope__assembly" aria-hidden="true">
+          <div class="envelope__interior"></div>
+          <div class="envelope__opening" id="envelopeInterior"></div>
+          <div class="envelope__light"></div>
+          <div class="envelope__flap envelope__flap--bottom" data-flap="bottom">
+            <div class="flap-face flap-face--back"></div>
+            <div class="flap-face flap-face--front"><div class="paper-embossing">
+              <span class="paper-floral paper-floral--top"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--bottom"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--left"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--right"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+            </div></div>
+          </div>
+          <div class="envelope__flap envelope__flap--left" data-flap="left">
+            <div class="flap-face flap-face--back"></div>
+            <div class="flap-face flap-face--front"><div class="paper-embossing">
+              <span class="paper-floral paper-floral--top"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--bottom"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--left"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--right"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+            </div></div>
+          </div>
+          <div class="envelope__flap envelope__flap--right" data-flap="right">
+            <div class="flap-face flap-face--back"></div>
+            <div class="flap-face flap-face--front"><div class="paper-embossing">
+              <span class="paper-floral paper-floral--top"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--bottom"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--left"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--right"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+            </div></div>
+          </div>
+          <div class="envelope__flap envelope__flap--top" data-flap="top">
+            <div class="flap-face flap-face--back"></div>
+            <div class="flap-face flap-face--front"><div class="paper-embossing">
+              <span class="paper-floral paper-floral--top"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--bottom"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--left"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+              <span class="paper-floral paper-floral--right"><img src="assets/envelope-unsealed.png" alt="" draggable="false"></span>
+            </div></div>
+            <!-- The seal shares the upper flap's hinge and stays attached.
+                 Its plain gold reverse prevents mirrored calligraphy. -->
+            <div class="wax-seal" id="waxSeal">
+              <span class="wax-seal__surface wax-seal__back"></span>
+              <img class="wax-seal__surface wax-seal__art" src="assets/envelope-reference.png" width="941" height="1672" alt="" draggable="false">
+            </div>
+          </div>
+        </div>
+
+        <button class="envelope__trigger" id="envelopeTrigger" type="button"
+          aria-label="افتح الطرف العلوي للظرف وشغّل الموسيقى" aria-describedby="envelopeHint" aria-controls="invitationPortal"></button>
+      </figure>
+
+      <div class="upper-glow" aria-hidden="true"></div>
+
+      <div class="envelope-controls">
+        <p class="envelope-hint" id="envelopeHint"><span class="hint-star" aria-hidden="true">✧</span> المس طرف الظرف… لتبدأ الحكاية <span class="hint-star" aria-hidden="true">✧</span></p>
+        <button class="replay-button" id="replayEnvelope" type="button" hidden>
+          <span aria-hidden="true">↻</span> إعادة فتح الظرف
+        </button>
+      </div>
+      <p class="sr-only" id="envelopeStatus" role="status" aria-live="polite" aria-atomic="true">الظرف مغلق.</p>
+    </div>
+    <!-- The preview becomes the live invitation after the opening animation,
+         keeping the music in this document playing without interruption. -->
+    <div class="invitation-portal" id="invitationPortal" aria-hidden="true" inert>
+      <iframe id="invitationFrame" src="invitation.html?preview=1" title="دعوة زفاف محمود ومرام"
+        loading="eager" tabindex="-1"></iframe>
+    </div>
+    <div class="opening-wash" aria-hidden="true"></div>
+  </main>
+</body>
+</html>
