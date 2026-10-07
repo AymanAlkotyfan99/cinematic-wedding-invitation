@@ -247,6 +247,35 @@ button { font: inherit; }
 .replay-button:focus-visible { outline: 2px solid #a76b1d; outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .envelope.is-resetting, .envelope.is-resetting *, .envelope.is-resetting *::after, .envelope.is-resetting ~ .upper-glow { transition: none !important; animation: none !important; }
+/* Phones get the same reveal with a compositor-friendly cross-fade. Animating
+   a full-page iframe's clip-path while scaling the detailed paper artwork is
+   expensive on mobile GPUs and can otherwise look frozen until the last frame. */
+.stage.is-compact-motion .envelope__flap--top.is-open,
+.stage.is-compact-motion .envelope[data-state='opening'] .envelope__light,
+.stage.is-compact-motion .envelope[data-state='opening'] ~ .upper-glow,
+.stage.is-compact-motion.is-opening .sunlight { animation-duration: 1900ms; }
+.stage.is-compact-motion .envelope[data-state='opening'] .envelope__light,
+.stage.is-compact-motion .envelope[data-state='opening'] ~ .upper-glow { filter: none; }
+.stage.is-compact-motion .envelope[data-state='opening'] ~ .upper-glow { mix-blend-mode: normal; }
+.stage.is-compact-motion .sunlight__rays { display: none; }
+.stage.is-compact-motion.is-entering .envelope-wrap {
+  transform-origin: 50% 50%;
+  animation: compact-envelope-exit 700ms ease-out both;
+  will-change: transform, opacity;
+}
+.stage.is-compact-motion.is-entering .invitation-portal {
+  visibility: visible;
+  clip-path: none;
+  animation: compact-invitation-enter 700ms ease-out both;
+  will-change: opacity;
+}
+.stage.is-compact-motion.is-entering .opening-wash { animation: compact-light-dissolve 700ms ease-out both; }
+@keyframes compact-envelope-exit {
+  0%, 24% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  100% { opacity: 0; transform: translate3d(0, -1%, 0) scale(1.025); }
+}
+@keyframes compact-invitation-enter { 0%, 18% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes compact-light-dissolve { 0% { opacity: 0; } 25% { opacity: .72; } 100% { opacity: 0; } }
 @media (max-width: 600px) {
   :root { --frame-gap: 4px; }
   .paper-floral--top { top: 6%; width: 88%; }

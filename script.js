@@ -16,6 +16,11 @@
   const entryProperties = ['--entry-top', '--entry-right', '--entry-bottom', '--entry-left', '--push-x', '--push-y', '--push-scale', '--push-origin-x', '--push-origin-y'];
   const topFlap = envelope.querySelector('[data-flap="top"]');
   const motion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+  const compactMotion = window.matchMedia?.('(max-width: 720px), (hover: none) and (pointer: coarse)');
+  const OPEN_DURATION = 3600;
+  const ENTRY_DURATION = 2400;
+  const COMPACT_OPEN_DURATION = 1900;
+  const COMPACT_ENTRY_DURATION = 700;
   const pendingWaits = new Set();
   const pendingArtwork = new Set();
   const decodedSources = new Set();
@@ -31,6 +36,7 @@
     }
     envelope.dataset.state = 'invitation';
     setBusy(false);
+    stage.classList.remove('is-opening', 'is-entering');
     stage.classList.add('is-invitation');
     portal.removeAttribute('aria-hidden');
     portal.removeAttribute('inert');
@@ -174,7 +180,12 @@
     void window.WeddingAudio?.start();
 
     const token = ++runId;
+    const useCompactMotion = Boolean(compactMotion?.matches);
+    const openDuration = useCompactMotion ? COMPACT_OPEN_DURATION : OPEN_DURATION;
+    const entryDuration = useCompactMotion ? COMPACT_ENTRY_DURATION : ENTRY_DURATION;
     const destination = invitationDestination();
+    if (useCompactMotion) stage?.classList.add('is-compact-motion');
+    else stage?.classList.remove('is-compact-motion');
     envelope.dataset.state = 'glowing';
     envelope.dataset.step = 'glow';
     if (replay) replay.hidden = true;
@@ -197,7 +208,7 @@
     envelope.dataset.step = 'top';
     stage?.classList.add('is-opening');
     topFlap?.classList.add('is-open');
-    if (topFlap) await wait(3600, token, topFlap, 'unfold-top');
+    if (topFlap) await wait(openDuration, token, topFlap, 'unfold-top');
     if (token !== runId) return false;
 
     envelope.dataset.state = 'open';
@@ -214,7 +225,7 @@
     prepareEntry();
     stage?.classList.add('is-entering');
     announce('تم فتح الظرف، جارٍ الدخول إلى الدعوة…');
-    await wait(2400, token);
+    await wait(entryDuration, token);
     if (token !== runId) return false;
 
     activateInvitation(destination);
@@ -227,7 +238,7 @@
     [...pendingArtwork].forEach((cancel) => cancel());
     envelope.classList.add('is-resetting');
     topFlap?.classList.remove('is-open');
-    stage?.classList.remove('is-opening', 'is-entering', 'is-invitation');
+    stage?.classList.remove('is-opening', 'is-entering', 'is-invitation', 'is-compact-motion');
     if (portal) {
       portal.setAttribute('aria-hidden', 'true');
       portal.setAttribute('inert', '');

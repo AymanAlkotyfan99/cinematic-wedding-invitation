@@ -227,9 +227,13 @@
       revealElements.forEach((element) => observer.observe(element));
     } else revealElements.forEach((element) => element.classList.add('is-visible'));
     window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => document.body.classList.add('intro-ready'));
+      window.requestAnimationFrame(() => {
+        document.body.classList.add('intro-ready');
+        // Let the first invitation frame paint before constructing the
+        // decorative flowers, avoiding a burst of DOM work during entry.
+        startPetals();
+      });
     });
-    startPetals();
     if (timeline) {
       window.addEventListener('scroll', scheduleJourney, { passive: true });
       window.addEventListener('resize', scheduleJourney, { passive: true });

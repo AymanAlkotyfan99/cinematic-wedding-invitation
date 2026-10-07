@@ -6,7 +6,7 @@ const vm = require('node:vm');
 
 const source = fs.readFileSync(path.join(__dirname, '..', 'script.js'), 'utf8');
 
-function setup({ reduced = false, missingEnvelope = false, minimal = false, portal = false, assets = [], invitationUrl, audio,
+function setup({ reduced = false, compact = false, missingEnvelope = false, minimal = false, portal = false, assets = [], invitationUrl, audio,
   rect = { top: 180, left: 320, width: 280, height: 230 },
   wrapRect = { top: 180, left: 320, width: 280, height: 500 }, viewport = { width: 1000, height: 900 } } = {}) {
   const log = [];
@@ -103,7 +103,7 @@ function setup({ reduced = false, missingEnvelope = false, minimal = false, port
     WeddingAudio: audio,
     innerWidth: viewport.width,
     innerHeight: viewport.height,
-    matchMedia: () => motion,
+    matchMedia: (query) => query.includes('prefers-reduced-motion') ? motion : { matches: compact },
     addEventListener: lifecycle.addEventListener.bind(lifecycle),
     setTimeout(callback, delay) {
       const id = ++nextTimer;
@@ -235,6 +235,28 @@ test('repeated clicks cannot overlap sequences or emit a second completion', asy
   assert.deepEqual(s.log.map(({ id }) => id), ['top']);
   assert.deepEqual(s.log.map(({ time }) => time), [500]);
   for (const flap of Object.values(s.flaps)) assert.equal(flap.hidden, false);
+});
+
+test('compact mobile motion replaces the long entry with a short synchronized reveal', async () => {
+  const s = setup({ compact: true, portal: true });
+  const result = s.api.open();
+  assert.equal(s.ids.envelopeStage.classList.contains('is-compact-motion'), true);
+  await s.advance(500);
+  await s.advance(1900);
+  s.finishFlap('top');
+  await s.flush();
+  assert.equal(s.api.state, 'entering');
+  assert.equal(s.ids.invitationPortal.getAttribute('aria-hidden'), 'true');
+  await s.advance(699);
+  assert.equal(s.api.state, 'entering');
+  await s.advance(1);
+  assert.equal(await result, true);
+  assert.equal(s.api.state, 'invitation');
+  assert.equal(s.ids.envelopeStage.classList.contains('is-opening'), false);
+  assert.equal(s.ids.envelopeStage.classList.contains('is-entering'), false);
+  assert.deepEqual(s.messages, [{ type: 'invitation:activate', origin: '*', time: 3100 }]);
+  s.api.reset();
+  assert.equal(s.ids.envelopeStage.classList.contains('is-compact-motion'), false);
 });
 
 test('entry targets the upper opening and starts only after the upper flap finishes lifting', async () => {
