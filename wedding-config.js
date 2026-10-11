@@ -5,7 +5,7 @@ window.WEDDING = {
   audioUrl: '',
   groom: 'محمود',
   bride: 'مرام',
-  date: '2026-10-01',
+  date: '2026-11-01',
   startTime: '16:00',
   utcOffset: '+03:00',
   whatsapp: '963981217167',
